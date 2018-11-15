@@ -1,0 +1,56 @@
+//Sesnor 1-Ultrasonic
+//Sensor 2- X
+//Sensor 3- Y
+void shutdownProcedure()
+{
+	motor[motorA] = 5;
+	while(getSensorValue(S2) != 1)
+	{}
+	motor[motorA] = 0;
+	
+	motor[motorB] = 5;
+	
+	while (getSensorValue(S3) != 1)
+	{}
+	motor[motorB] = 0; 
+	
+	displayText(6,"Shutdown")
+	wait1Msec(5000); 
+}
+/* Test Cases:
+Run motor in just the x direction, test if it stops when it hits the touch sensor
+Run motor in just the y direction, test if it stops when it hits the touch sensor
+Run both motors at the same time, see of they both stop 
+Test different motor speeds 
+*/
+
+//turns off all motors, once the Up button has already been pressed
+void emergencyStop()
+{
+	motor[motorA] = motor[motorB] = motor[motorC] = 0; 
+}
+/*
+TestCases:
+Check if motorA turns off
+Check if motorB turns off
+Check if motorC turns off
+Make sure turns off after button release
+*/
+
+//Checks if the Emergency stop button has been pressed 
+void checkifEstop()
+{
+	while(!getButtonPress(buttonUp))
+ 	{}
+	while(getButtonPress(buttonUp))
+	{}
+	emergencyStop(); 
+}
+
+
+
+//
+void drawCube()
+{
+	
+}
